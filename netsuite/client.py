@@ -1,4 +1,3 @@
-import ns_config
 from netsuite.service import (client,
                               RecordRef,
                               ApplicationInfo,

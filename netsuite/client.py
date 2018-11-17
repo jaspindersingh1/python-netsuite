@@ -2,7 +2,7 @@ from netsuite.service import (client,
                               RecordRef,
                               ApplicationInfo,
                               Passport)
-
+ns_config = 'ns_config'
 
 def make_passport():
     role = RecordRef(internalId=ns_config.NS_ROLE)

@@ -3,10 +3,12 @@ from zeep.cache import SqliteCache
 from zeep.transports import Transport
 import os
 
+SERVER_ADDRESS = os.environ['ns_config.WSDL_URL']
+
 # cache WSDL and XSD for a year
 cache = SqliteCache(timeout=60*60*24*365)
 transport = Transport(cache=cache)
-client = Client(os.environ.get("ns_config.WSDL_URL"), transport=transport)
+client = Client(SERVER_ADDRESS, transport=transport)
 
 model = client.get_type
 

@@ -1,19 +1,25 @@
+import os
 from netsuite.service import (client,
                               RecordRef,
                               ApplicationInfo,
                               Passport)
-ns_config = 'ns_config'
+
+myRole = os.environ.get('ns_config.NS_ROLE')
+myEmail = os.environ.get('ns_config.NS_EMAIL')
+myPassword = os.environ.get('ns_config.NS_PASSWORD')
+myAccount = os.environ.get('ns_config.NS_ACCOUNT')
+myAppId = os.environ.get('ns_config.NS_APPID')
 
 def make_passport():
-    role = RecordRef(internalId=ns_config.NS_ROLE)
-    return Passport(email=ns_config.NS_EMAIL,
-                    password=ns_config.NS_PASSWORD,
-                    account=ns_config.NS_ACCOUNT,
+    role = RecordRef(internalId=myRole)
+    return Passport(email=myEmail,
+                    password=myPassword,
+                    account=myAccount,
                     role=role)
 
 
 def login():
-    app_info = ApplicationInfo(applicationId=ns_config.NS_APPID)
+    app_info = ApplicationInfo(applicationId=myAppId)
     passport = make_passport()
     login = client.service.login(passport=passport,
                 _soapheaders={'applicationInfo': app_info})

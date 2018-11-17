@@ -1,7 +1,7 @@
 from zeep import Client
 from zeep.cache import SqliteCache
 from zeep.transports import Transport
-from boto.s3.connection import S3Connection
+import os
 
 # cache WSDL and XSD for a year
 cache = SqliteCache(timeout=60*60*24*365)
